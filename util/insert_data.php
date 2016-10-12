@@ -5,7 +5,7 @@
 * Google Spread Sheetのレシピデータを
 * ElasticSearchで使えるJSON形式にパースしてコマンド化
 *
-* php insert_data.php > recipe.sh
+* php insert_data.php > ../mapping/recipe.sh
 *
 ******************************/
 
