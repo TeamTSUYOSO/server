@@ -9,7 +9,7 @@
 #### テストデータをDBに突っ込む
 ```sh
 $ curl -XPUT localhost:9200/tsuyoso -d @schema.json
-./recipe.sh
+$ ./recipe.sh
 ```
 
 #### DB削除
@@ -43,7 +43,7 @@ elasticsearch用のマッピングファイル
 テストデータ(CSV)からelasticsearchにデータを突っ込むためのシェルを生成
 
 ```sh
-php insert_data.php > recipe.sh
-./recipe.sh
+$ php insert_data.php > recipe.sh
+$ ./recipe.sh
 ```
 
