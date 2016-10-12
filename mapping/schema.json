@@ -1,0 +1,107 @@
+{
+  "settings": {
+    "analysis": {
+      "tokenizer": {
+        "ngram_tokenizer": {
+          "type": "nGram",
+          "min_gram": "2",
+          "max_gram": "3",
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
+        }
+      },
+      "analyzer": {
+        "ngram_analyzer": {
+          "tokenizer": "ngram_tokenizer"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "recipe": {
+      "_source": {
+        "enabled": true
+      },
+      "_all": {
+        "enabled": true
+      },
+      "properties": {
+        "id": {
+          "type": "integer",
+          "index": "not_analyzed"
+        },
+        "name": {
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "ngram_analyzer"
+        },
+        "ingredients": {
+          "type": "nested",
+          "properties": {
+            "name": {
+              "type": "string",
+              "index": "analyzed",
+              "analyzer": "ngram_analyzer"
+            },
+            "quantity": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "instructions": {
+          "type": "nested",
+          "properties": {
+            "content": {
+              "type": "string",
+              "index": "analyzed",
+              "analyzer": "ngram_analyzer"
+            },
+            "order": {
+              "type": "integer",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "serving_num":{
+          "type": "integer",
+          "index": "not_analyzed"
+        },
+        "ingredients_genre": {
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "whitespace"
+        },
+        "process": {
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "whitespace"
+        },
+        "foods_genre": {
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "whitespace"
+        },
+        "takes_time": {
+          "type": "integer",
+          "index": "not_analyzed"
+        },
+        "kitchenware": {
+          "type": "string",
+          "index": "analyzed",
+          "analyzer": "whitespace"
+        },
+        "calorie": {
+          "type": "integer",
+          "index": "not_analyzed"
+        },
+        "price": {
+          "type": "integer",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}
