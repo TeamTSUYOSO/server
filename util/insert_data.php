@@ -3,11 +3,13 @@
 /***************************
 *
 * Google Spread Sheetのレシピデータを
-* ElasticSearchで使えるJSON形式にパース
+* ElasticSearchで使えるJSON形式にパースしてコマンド化
+*
+* php insert_data.php > recipe.sh
 *
 ******************************/
 
-$filepath = "tsuyoso_recipe.csv";
+$filepath = "../data/tsuyoso_recipe.csv";
 $file = new SplFileObject($filepath); 
 $file->setFlags(SplFileObject::READ_CSV);
 
@@ -68,21 +70,33 @@ foreach ($recipe_datas as $recipe_id => $recipe_data) {
     echo "\"kitchenware\": \"{$recipe_data["kitchenware"]}\",";
     echo "\"calorie\": {$recipe_data["calorie"]},";
     echo "\"price\": {$recipe_data["price"]},";
+    //ingredients
+    $is_first = true;
     echo "\"ingredients\" : [";
     foreach ($recipe_data["ingredients"] as $ingredient) {
+        if(!$is_first){
+            echo ", ";
+        }
         echo " { ";
         echo "\"name\": \"{$ingredient["name"]}\",";
         echo "\"quantity\": \"{$ingredient["quantity"]}\"";
-        echo "}, ";
+        echo "} ";
+        $is_first = false;
     }
     echo '],';
+    //instructions
+    $is_first = true;
     echo "\"instructions\" : [";
     foreach ($recipe_data["instructions"] as $instruction) {
+        if(!$is_first){
+            echo ", ";
+        }
         echo " { ";
         echo "\"content\": \"{$instruction["content"]}\",";
         echo "\"order\": \"{$instruction["order"]}\"";
-        echo "}, ";
+        echo "}";
+        $is_first = false;
     }
-    echo '],';
+    echo ']';
     echo "} '". PHP_EOL;
 }

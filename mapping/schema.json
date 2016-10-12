@@ -28,7 +28,7 @@
         "enabled": true
       },
       "properties": {
-        "id": {
+        "recipe_id": {
           "type": "integer",
           "index": "not_analyzed"
         },
@@ -69,7 +69,7 @@
           "type": "integer",
           "index": "not_analyzed"
         },
-        "ingredients_genre": {
+        "main_food": {
           "type": "string",
           "index": "analyzed",
           "analyzer": "whitespace"
@@ -79,12 +79,12 @@
           "index": "analyzed",
           "analyzer": "whitespace"
         },
-        "foods_genre": {
+        "genre_id": {
           "type": "string",
           "index": "analyzed",
           "analyzer": "whitespace"
         },
-        "takes_time": {
+        "cooking_time": {
           "type": "integer",
           "index": "not_analyzed"
         },
