@@ -55,9 +55,7 @@
           "type": "nested",
           "properties": {
             "content": {
-              "type": "string",
-              "index": "analyzed",
-              "analyzer": "ngram_analyzer"
+              "type": "string"
             },
             "order": {
               "type": "integer",
